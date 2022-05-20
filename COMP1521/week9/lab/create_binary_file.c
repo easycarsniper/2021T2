@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        printf("wrong number of arguments\n");
+        return 0;
+    }
+    long i = 2;
+    FILE *fp;
+    int c;
+    
+    fp = fopen(argv[1], "w");
+    if(fp == NULL) {
+      perror("Error in opening file");
+      exit(1);
+    }
+    while (i < argc) {
+        c = atoi(argv[i]);
+        if (c <= 255 && c >= 0) {
+            fputc(c, fp);          
+        }
+        i++;
+    }
+    fclose(fp);
+    return 0;
+}
